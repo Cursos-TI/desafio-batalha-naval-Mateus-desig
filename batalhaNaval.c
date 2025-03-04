@@ -4,8 +4,10 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
 
+#define SIZE 10
+
 // Inicializando o tabuleiro.
-void initializeBoard(int board[10][10], int size)
+void initializeBoard(int board[SIZE][SIZE], int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -17,7 +19,7 @@ void initializeBoard(int board[10][10], int size)
 }
 
 // Exibir tabuleiro.
-void printBoard(int board[10][10], int size)
+void printBoard(int board[SIZE][SIZE], int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -30,7 +32,7 @@ void printBoard(int board[10][10], int size)
 }
 
 // Navio orizontal.
-void placeHorizontalShip(int board[10][10], int row, int colStart, int lenght)
+void placeHorizontalShip(int board[SIZE][SIZE], int row, int colStart, int lenght)
 {
     for (int i = 0; i < lenght; i++)
     {
@@ -39,7 +41,7 @@ void placeHorizontalShip(int board[10][10], int row, int colStart, int lenght)
 }
 
 // Navio orizontal.
-void placeVerticalShip(int board[10][10], int col, int rowStart, int lenght)
+void placeVerticalShip(int board[SIZE][SIZE], int col, int rowStart, int lenght)
 {
     for (int i = 0; i < lenght; i++)
     {
@@ -48,12 +50,65 @@ void placeVerticalShip(int board[10][10], int col, int rowStart, int lenght)
 }
 
 // Navio diagonal.
-void placeDiagonalShip(int board[10][10], int rowStart, int colStart, int lenght)
+void placeDiagonalShip(int board[SIZE][SIZE], int rowStart, int colStart, int lenght)
 {
     for (int i = 0; i < lenght; i++)
     {
         board[rowStart + i][colStart + i] = 3;
     }
+}
+
+// Habilidade: Cone
+void applyCone(int board[SIZE][SIZE], int row, int col)
+{
+    if (row >= SIZE - 2)
+        return; // Evita ultrapassar o tabuleiro
+
+    board[row][col] = 1;
+    if (col > 0)
+        board[row + 1][col - 1] = 1;
+    board[row + 1][col] = 1;
+    if (col < SIZE - 1)
+        board[row + 1][col + 1] = 1;
+    if (row + 2 < SIZE)
+    {
+        board[row + 2][col] = 1;
+    }
+}
+
+// Habilidade: Cruz
+void applyCross(int board[SIZE][SIZE], int row, int col)
+{
+    board[row][col] = 1;
+    if (row > 0)
+        board[row - 1][col] = 1;
+    if (row < SIZE - 1)
+        board[row + 1][col] = 1;
+    if (col > 0)
+        board[row][col - 1] = 1;
+    if (col < SIZE - 1)
+        board[row][col + 1] = 1;
+}
+
+// Habilidade: Octaedro
+void applyOctahedron(int board[SIZE][SIZE], int row, int col)
+{
+    if (row > 0)
+        board[row - 1][col] = 1;
+    if (row < SIZE - 1)
+        board[row + 1][col] = 1;
+    if (col > 0)
+        board[row][col - 1] = 1;
+    if (col < SIZE - 1)
+        board[row][col + 1] = 1;
+    if (row > 1)
+        board[row - 2][col] = 1;
+    if (row < SIZE - 2)
+        board[row + 2][col] = 1;
+    if (col > 1)
+        board[row][col - 2] = 1;
+    if (col < SIZE - 2)
+        board[row][col + 2] = 1;
 }
 
 int main()
@@ -89,20 +144,25 @@ int main()
     // 1 1 1 1 1
     // 0 0 1 0 0
 
-    int size = 10;
-    int board[10][10];
+    int size = SIZE;
+    int board[SIZE][SIZE];
 
     // Inicializando o tabuleiro.
     initializeBoard(board, size);
 
     // Posicionando o primeiro navio horizontal (na linha 3).
-    placeHorizontalShip(board, 3, 0, 4);
+    // placeHorizontalShip(board, 3, 0, 4);
 
     // Posicionando o segundo navio vertical (na coluna 5).
-    placeVerticalShip(board, 5, 0, 3);
+    // placeVerticalShip(board, 5, 0, 3);
 
     // Posicionando o terceiro navio diagonal (da posição 7,7 até 9,9)
-    placeDiagonalShip(board, 7, 7, 3);
+    // placeDiagonalShip(board, 7, 7, 3);
+
+    // Aplicando habilidades especiais.
+    // applyCone(board, 2, 5);       // Cone no centro superior.
+    // applyCross(board, 5, 5);      // Cruz no meio do tabuleiro.
+    applyOctahedron(board, 7, 5); // Octaedro na parte inferior.
 
     // Exibir o tabuleiro.
     printf("Tabuleiro (10x10):\n");
