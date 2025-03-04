@@ -4,7 +4,42 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
 
-int main() {
+// Inicializando o tabuleiro.
+void initializeBoard(int board[10][10], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            board[i][j] = 0;
+        }
+    }
+}
+
+// Exibir tabuleiro.
+void printBoard(int board[10][10], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int k = 0; k < size; k++)
+        {
+            printf("%d ", board[i][k]);
+        }
+        printf("\n");
+    }
+}
+
+// Navio orizontal.
+placeHorizontalShip(int board[10][10], int row, int coldStart, int lenght)
+{
+    for (int i = 0; i < lenght; i++)
+    {
+        board[row][coldStart + i] = 3;
+    }
+}
+
+int main()
+{
     // Nível Novato - Posicionamento dos Navios
     // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
@@ -25,7 +60,7 @@ int main() {
     // 0 0 1 0 0
     // 0 1 1 1 0
     // 1 1 1 1 1
-    
+
     // Exemplo para habilidade em octaedro:
     // 0 0 1 0 0
     // 0 1 1 1 0
@@ -35,6 +70,19 @@ int main() {
     // 0 0 1 0 0
     // 1 1 1 1 1
     // 0 0 1 0 0
+
+    int size = 10;
+    int board[10][10];
+
+    // Inicializando o tabuleiro.
+    initializeBoard(board, size);
+
+    // Posicionando o primeiro navio horizontal (na linha 3)
+    placeHorizontalShip(board, 3, 0, 4);
+
+    // Exibir o tabuleiro.
+    printf("Tabuleiro (10x10):\n");
+    printBoard(board, size);
 
     return 0;
 }
