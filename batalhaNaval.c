@@ -48,11 +48,11 @@ placeVerticalShip(int board[10][10], int col, int rowStart, int lenght)
 }
 
 // Navio diagonal.
-placeDiagonalShip(int board[10][10], int rowStart,int coldStart, int lenght)
+placeDiagonalShip(int board[10][10], int rowStart, int coldStart, int lenght)
 {
     for (int i = 0; i < lenght; i++)
     {
-        board[rowStart+i][coldStart+i]= 3;
+        board[rowStart + i][coldStart + i] = 3;
     }
 }
 
@@ -103,7 +103,7 @@ int main()
 
     // Posicionando o terceiro navio diagonal (da posição 7,7 até 9,9)
     placeDiagonalShip(board, 7, 7, 3);
-    
+
     // Exibir o tabuleiro.
     printf("Tabuleiro (10x10):\n");
     printBoard(board, size);
