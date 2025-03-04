@@ -30,7 +30,7 @@ void printBoard(int board[10][10], int size)
 }
 
 // Navio orizontal.
-placeHorizontalShip(int board[10][10], int row, int coldStart, int lenght)
+void placeHorizontalShip(int board[10][10], int row, int coldStart, int lenght)
 {
     for (int i = 0; i < lenght; i++)
     {
@@ -39,7 +39,7 @@ placeHorizontalShip(int board[10][10], int row, int coldStart, int lenght)
 }
 
 // Navio orizontal.
-placeVerticalShip(int board[10][10], int col, int rowStart, int lenght)
+void placeVerticalShip(int board[10][10], int col, int rowStart, int lenght)
 {
     for (int i = 0; i < lenght; i++)
     {
@@ -48,7 +48,7 @@ placeVerticalShip(int board[10][10], int col, int rowStart, int lenght)
 }
 
 // Navio diagonal.
-placeDiagonalShip(int board[10][10], int rowStart, int coldStart, int lenght)
+void placeDiagonalShip(int board[10][10], int rowStart, int coldStart, int lenght)
 {
     for (int i = 0; i < lenght; i++)
     {
