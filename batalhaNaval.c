@@ -38,6 +38,15 @@ placeHorizontalShip(int board[10][10], int row, int coldStart, int lenght)
     }
 }
 
+// Navio orizontal.
+placeVerticalShip(int board[10][10], int col, int rowStart, int lenght)
+{
+    for (int i = 0; i < lenght; i++)
+    {
+        board[rowStart + i][col] = 3;
+    }
+}
+
 int main()
 {
     // Nível Novato - Posicionamento dos Navios
@@ -77,9 +86,14 @@ int main()
     // Inicializando o tabuleiro.
     initializeBoard(board, size);
 
-    // Posicionando o primeiro navio horizontal (na linha 3)
+    // Posicionando o primeiro navio horizontal (na linha 3).
     placeHorizontalShip(board, 3, 0, 4);
 
+    // Posicionando o segundo navio vertical (na coluna 5).
+    placeVerticalShip(board, 5, 0, 3);
+
+
+    
     // Exibir o tabuleiro.
     printf("Tabuleiro (10x10):\n");
     printBoard(board, size);
